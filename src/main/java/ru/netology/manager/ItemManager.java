@@ -14,6 +14,9 @@ public class ItemManager {
     }
 
     public void add(Filmography item) {
+        if (items.length==lengthLimit) {
+            return;
+        }
         int length = items.length + 1;
         Filmography[] tmp = new Filmography[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
@@ -21,16 +24,23 @@ public class ItemManager {
         tmp[lastIndex] = item;
         items = tmp;
     }
-
-    public Filmography[] getTen() {
-        if (items.length > 10){
-            lengthLimit = 10;
+    /*private Filmography[] getFilms(int cnt) {
+       if (items.length > cnt){
+            lengthLimit = cnt;
         } else {
             lengthLimit = items.length;
         }
         Filmography[] result = new Filmography[lengthLimit];
-        for (int i = 0; i < result.length ; i++) {
-            int index = result.length - i - 1;
+        for (int i = 0; i < lengthLimit ; i++) {
+            int index = items.length - i - 1;
+            result[i] = items[index];
+        }
+        return result;
+    }*/
+    public Filmography[] getTen() {
+        Filmography[] result = new Filmography[items.length];
+        for (int i = 0; i < items.length ; i++) {
+            int index = items.length - i - 1;
             result[i] = items[index];
         }
         return result;

@@ -67,7 +67,7 @@ public class ItemManagerTest {
         manager.add(four);
 
         Filmography[] actual = manager.getTen();
-        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,four,third, second, first};
+        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,third, second, first};
         assertArrayEquals(expected, actual);
 
     }
