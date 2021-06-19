@@ -4,15 +4,9 @@ import ru.netology.domain.Filmography;
 
 public class ItemManager {
     private Filmography[] items = new Filmography[0];
-
-    public void setLengthLimit(int lengthLimit) {
-        this.lengthLimit = lengthLimit;
-    }
-
-    private int lengthLimit = 10;
+    private  int lengthLimit = 10;
 
     public ItemManager() {
-
     }
 
     public ItemManager (int lengthLimit) {
@@ -29,29 +23,26 @@ public class ItemManager {
     }
 
     public Filmography[] getTen() {
-        int resultLength;
-        if (lengthLimit >= 10){
-            resultLength=10;
+        if (items.length > 10){
+            lengthLimit = 10;
         } else {
-            resultLength = lengthLimit;
+            lengthLimit = items.length;
         }
-        Filmography[] result = new Filmography[items.length];
+        Filmography[] result = new Filmography[lengthLimit];
         for (int i = 0; i < result.length ; i++) {
+            int index = result.length - i - 1;
+            result[i] = items[index];
+        }
+        return result;
+    }
+    public Filmography[] getAll() {
+        Filmography[] result = new Filmography[items.length];
+        for (int i = 0; i < result.length; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
         }
         return result;
     }
 
-//      ??? resultLength;
-//  if ??? {
-//        resultLength = ???
-//    } else {
-//        resultLength = ???
-//    }
-//  ??? result = new ???[resultLength];
-//  for (???) {
-//        // заполняем result из массива что лежит в поле
-//        // в обратном порядке
-//    }
+//
 }
