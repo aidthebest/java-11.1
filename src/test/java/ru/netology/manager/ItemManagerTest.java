@@ -13,6 +13,7 @@ public class ItemManagerTest {
     private Filmography second = new Filmography(2, 2, "second", "comedy", "non", 1);
     private Filmography third = new Filmography(3, 3, "third", "horror", "non", 1);
 
+    private Filmography four = new Filmography(4 , 4, "four", "horror", "non", 5);
     @BeforeEach
     public void setUp() {
         manager.add(first);
@@ -20,27 +21,55 @@ public class ItemManagerTest {
         manager.add(third);
     }
 
-//    @Test
-//    public void shouldRemoveIfExists() {
-//        int idToRemove = 1;
-//        manager.removeById(idToRemove);
-//
-//        Filmography[] actual = manager.getAll();
-//        Filmography[] expected = new Filmography[]{third, second};
-//
-////    assertEquals(expected, actual);
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    public void addFilm() {
+        manager.add(four);
+        Filmography[] actual = manager.getAll();
+        Filmography[] expected = new Filmography[]{four, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
 
-//    @Test
-//    public void shouldNotRemoveIfNotExists() {
-//        int idToRemove = 4;
-//
-//        manager.removeById(idToRemove);
-//
-//        PurchaseItem[] actual = manager.getAll();
-//        PurchaseItem[] expected = new PurchaseItem[]{third, second, first};
-//
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    public void showAllFilms() {
+        manager.add(four);
+        Filmography[] actual = manager.getTen();
+        Filmography[] expected = new Filmography[]{four, third, second, first};
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void showTenFilms() {
+        ItemManager manager = new ItemManager(15);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(four);
+        Filmography[] actual = manager.getTen();
+        Filmography[] expected = new Filmography[]{four, third, second, first};
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void showTenFilms3() {
+        ItemManager manager = new ItemManager(9);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+        manager.add(four);
+
+        Filmography[] actual = manager.getTen();
+        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,four,third, second, first};
+        assertArrayEquals(expected, actual);
+
+    }
+
 }
