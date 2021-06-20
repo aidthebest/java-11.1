@@ -24,7 +24,7 @@ public class ItemManagerTest {
     @Test
     public void addFilm() {
         manager.add(four);
-        Filmography[] actual = manager.getAll();
+        Filmography[] actual = manager.getFilms();
         Filmography[] expected = new Filmography[]{four, third, second, first};
         assertArrayEquals(expected, actual);
     }
@@ -32,7 +32,7 @@ public class ItemManagerTest {
     @Test
     public void showAllFilms() {
         manager.add(four);
-        Filmography[] actual = manager.getTen();
+        Filmography[] actual = manager.getFilms();
         Filmography[] expected = new Filmography[]{four, third, second, first};
         assertArrayEquals(expected, actual);
 
@@ -45,7 +45,7 @@ public class ItemManagerTest {
         manager.add(second);
         manager.add(third);
         manager.add(four);
-        Filmography[] actual = manager.getTen();
+        Filmography[] actual = manager.getFilms();
         Filmography[] expected = new Filmography[]{four, third, second, first};
         assertArrayEquals(expected, actual);
 
@@ -66,8 +66,10 @@ public class ItemManagerTest {
         manager.add(four);
         manager.add(four);
 
-        Filmography[] actual = manager.getTen();
-        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,third, second, first};
+        Filmography[] actual = manager.getFilms();
+        System.out.println("======>>" + actual.length + "<<=======");
+        System.out.println("======>>" + manager.getLengthLimit() + "<<=======");
+        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,four,four,third};
         assertArrayEquals(expected, actual);
 
     }
