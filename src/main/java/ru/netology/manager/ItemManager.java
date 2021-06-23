@@ -9,12 +9,12 @@ public class ItemManager {
     public ItemManager() {
     }
 
-    public int getLengthLimit(){
-        return this.lengthLimit;
-    }
-
     public ItemManager (int lengthLimit) {
         this.lengthLimit = lengthLimit;
+    }
+
+    public int getLengthLimit(){
+        return this.lengthLimit;
     }
 
     public void add(Filmography item) {

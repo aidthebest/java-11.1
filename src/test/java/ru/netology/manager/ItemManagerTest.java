@@ -14,6 +14,14 @@ public class ItemManagerTest {
     private Filmography third = new Filmography(3, 3, "third", "horror", "non", 1);
 
     private Filmography four = new Filmography(4 , 4, "four", "horror", "non", 5);
+    private Filmography fifth = new Filmography(5 , 4, "four", "horror", "non", 5);
+    private Filmography sixth  = new Filmography(6 , 4, "four", "horror", "non", 5);
+    private Filmography seventh  = new Filmography(7 , 4, "four", "horror", "non", 5);
+    private Filmography eighth  = new Filmography(8 , 4, "four", "horror", "non", 5);
+    private Filmography ninth  = new Filmography(9 , 4, "four", "horror", "non", 5);
+    private Filmography tenth  = new Filmography(10 , 4, "four", "horror", "non", 5);
+    private Filmography eleventh = new Filmography(11 , 4, "four", "horror", "non", 5);
+
     @BeforeEach
     public void setUp() {
         manager.add(first);
@@ -27,15 +35,6 @@ public class ItemManagerTest {
         Filmography[] actual = manager.getFilms();
         Filmography[] expected = new Filmography[]{four, third, second, first};
         assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void showAllFilms() {
-        manager.add(four);
-        Filmography[] actual = manager.getFilms();
-        Filmography[] expected = new Filmography[]{four, third, second, first};
-        assertArrayEquals(expected, actual);
-
     }
 
     @Test
@@ -58,18 +57,18 @@ public class ItemManagerTest {
         manager.add(second);
         manager.add(third);
         manager.add(four);
-        manager.add(four);
-        manager.add(four);
-        manager.add(four);
-        manager.add(four);
-        manager.add(four);
-        manager.add(four);
-        manager.add(four);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
 
         Filmography[] actual = manager.getFilms();
         System.out.println("======>>" + actual.length + "<<=======");
         System.out.println("======>>" + manager.getLengthLimit() + "<<=======");
-        Filmography[] expected = new Filmography[]{four,four,four,four,four,four,four,four,third};
+        Filmography[] expected = new Filmography[]{eleventh,tenth,ninth,eighth,seventh,sixth,fifth,four,third};
         assertArrayEquals(expected, actual);
 
     }
