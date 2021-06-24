@@ -1,14 +1,20 @@
 package ru.netology.manager;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import ru.netology.domain.FilmRepo;
 import ru.netology.domain.Filmography;
 import ru.netology.manager.ItemManager;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+
 
 public class ItemManagerTest {
-    private ItemManager manager = new ItemManager();
+    private FilmRepo repository = new FilmRepo();
+    private ItemManager manager = new ItemManager(repository);
     private Filmography first = new Filmography(1, 1, "first", "drame", "non", 1);
     private Filmography second = new Filmography(2, 2, "second", "comedy", "non", 1);
     private Filmography third = new Filmography(3, 3, "third", "horror", "non", 1);
@@ -30,6 +36,19 @@ public class ItemManagerTest {
     }
 
     @Test
+    public void shouldAdd () {
+        FilmRepo repository = Mockito.mock(FilmRepo.class);
+        ItemManager manager = new ItemManager(repository);
+        Filmography[] returned = new Filmography[] {first, second, third};
+        doReturn(returned).when(repository).findAll();
+
+        Filmography[] expected = {first, second, third};
+        Filmography[] actual = manager.getAll();
+
+        verify(repository).findAll();
+    }
+
+    @Test
     public void addFilm() {
         manager.add(four);
         Filmography[] actual = manager.getFilms();
@@ -39,7 +58,7 @@ public class ItemManagerTest {
 
     @Test
     public void showTenFilms() {
-        ItemManager manager = new ItemManager(15);
+        ItemManager manager = new ItemManager();
         manager.add(first);
         manager.add(second);
         manager.add(third);

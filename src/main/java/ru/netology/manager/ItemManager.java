@@ -1,33 +1,43 @@
 package ru.netology.manager;
 
+import ru.netology.domain.FilmRepo;
 import ru.netology.domain.Filmography;
 
 public class ItemManager {
-    private Filmography[] items = new Filmography[0];
-    private  int lengthLimit = 10;
+    private FilmRepo repository = new FilmRepo();
+
+    public ItemManager(FilmRepo repo) {
+        repository = repo;
+    }
+
+    public void add(Filmography item) {
+        repository.save(item);
+    }
+
+    public Filmography[] getAll() {
+        return repository.findAll();
+    }
+
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+
+    private int lengthLimit = 10;
 
     public ItemManager() {
     }
 
-    public ItemManager (int lengthLimit) {
+    public ItemManager(int lengthLimit) {
         this.lengthLimit = lengthLimit;
     }
 
-    public int getLengthLimit(){
+    public int getLengthLimit() {
         return this.lengthLimit;
     }
 
-    public void add(Filmography item) {
-        int length = items.length + 1;
-        Filmography[] tmp = new Filmography[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
-    }
-
     public Filmography[] getFilms() {
-        int resultCount=((items.length<=lengthLimit)? items.length : lengthLimit);
+        Filmography[] items = repository.findAll();
+        int resultCount = ((items.length <= lengthLimit) ? items.length : lengthLimit);
         Filmography[] result = new Filmography[resultCount];
         for (int i = 0; i < resultCount; i++) {
             int index = items.length - i - 1;
